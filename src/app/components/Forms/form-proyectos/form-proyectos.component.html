@@ -1,0 +1,82 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Nuevo Proyecto</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Matricula Inmobiliaria" formControlName="MatriculaInmobiliaria">
+            <mat-error *ngIf="addressForm.controls['MatriculaInmobiliaria'].hasError('required')">
+              Matricula <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Escritura Reglamento" formControlName="EscrituraReglamento">
+            <mat-error *ngIf="addressForm.controls['EscrituraReglamento'].hasError('required')">
+              Escritura Reglamento <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre Proyecto" formControlName="NombreProyecto">
+            <mat-error *ngIf="addressForm.controls['NombreProyecto'].hasError('required')">
+              Nombre <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Dirección Proyecto" formControlName="DireccionProyecto">
+            <mat-error *ngIf="addressForm.controls['DireccionProyecto'].hasError('required')">
+              Dirección Proyecto <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Estrato Proyecto" formControlName="Estrato">
+            <mat-error *ngIf="addressForm.controls['Estrato'].hasError('required')">
+              Estrato del Proyecto <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre Administrador" formControlName="NombreAdministrador">
+            <mat-error *ngIf="addressForm.controls['NombreAdministrador'].hasError('required')">
+              Nombre Administrador <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Telefono Administrador" formControlName="TelefonoAdministrador">
+            <mat-error *ngIf="addressForm.controls['TelefonoAdministrador'].hasError('required')">
+              Telefono Administrador <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Correo Administrador" formControlName="CorreoAdministrador">
+            <mat-error *ngIf="addressForm.controls['CorreoAdministrador'].hasError('required')">
+              Correo Administrador <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Crear</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
