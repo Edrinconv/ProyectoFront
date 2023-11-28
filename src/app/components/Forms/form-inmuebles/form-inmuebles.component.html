@@ -1,13 +1,16 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Nuevo Inmueble</mat-card-title>
+      <mat-card-title>{{titulo}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Matricula Inmobiliaria" formControlName="MatInmueble">
+            <mat-error *ngIf="addressForm.controls['MatInmueble'].hasError('required')">
+              Matricula Inmobiliaria <strong>requerida</strong>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -15,31 +18,34 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Chip" formControlName="ChipInmueble">
+            <mat-error *ngIf="addressForm.controls['ChipInmueble'].hasError('required')">
+              Chip Inmueble <strong>requerido</strong>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Cedula Propietario" formControlName="CedulaPropietario"></textarea>
+            <input matInput placeholder="Cedula Propietario" formControlName="CedulaPropietario">
             <mat-error *ngIf="addressForm.controls['CedulaPropietario'].hasError('required')">
-              Cedula Propietario<strong>required</strong>
+              Cedula Propietario <strong>requireda</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <mat-form-field class="full-width">
-          <textarea matInput placeholder="Matricula Proyecto" formControlName="MatProyecto"></textarea>
+          <input matInput placeholder="Matricula Proyecto" formControlName="MatProyecto">
           <mat-error *ngIf="addressForm.controls['MatProyecto'].hasError('required')">
-            Matricula Proyecto<strong>required</strong>
+            Matricula Proyecto <strong>requireda</strong>
           </mat-error>
         </mat-form-field>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Tipo de Inmueble" formControlName="TipoInmuebe">
-            <mat-error *ngIf="addressForm.controls['TipoInmuebe'].hasError('required')">
-              Tipo de Inmueble<strong>required</strong>
+            <input matInput placeholder="Tipo de Inmueble" formControlName="TipInmuebe">
+            <mat-error *ngIf="addressForm.controls['TipInmuebe'].hasError('required')">
+              Tipo de Inmueble <strong>requiredo</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -47,17 +53,17 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Nomenclatura" formControlName="Nomenclatura"></textarea>
+            <input matInput placeholder="Nomenclatura" formControlName="Nomenclatura">
             <mat-error *ngIf="addressForm.controls['Nomenclatura'].hasError('required')">
-              Nomenclatura <strong>required</strong>
+              Nomenclatura <strong>requiredo</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Numero de Escritura" formControlName="NumEscritura"></textarea>
+            <input matInput placeholder="Numero de Escritura" formControlName="NumEscritura">
             <mat-error *ngIf="addressForm.controls['NumEscritura'].hasError('required')">
-              Numero de Escritura<strong>required</strong>
+              Numero de Escritura <strong>requiredo</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -65,44 +71,44 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Area Privada" formControlName="AreaPrivada"></textarea>
+            <input matInput placeholder="Area Privada" formControlName="AreaPrivada">
             <mat-error *ngIf="addressForm.controls['AreaPrivada'].hasError('required')">
-              Area Privada<strong>required</strong>
+              Area Privada <strong>requireda</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <mat-form-field class="full-width">
-          <textarea matInput placeholder="Area Construida" formControlName="AreaConstruida"></textarea>
+          <input matInput placeholder="Area Construida" formControlName="AreaConstruida">
           <mat-error *ngIf="addressForm.controls['AreaConstruida'].hasError('required')">
-            Area Construida<strong>required</strong>
+            Area Construida <strong>requiredo</strong>
           </mat-error>
         </mat-form-field>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Alcobas" formControlName="Alcobas"></textarea>
+            <input matInput placeholder="Alcobas" formControlName="Alcobas">
             <mat-error *ngIf="addressForm.controls['Alcobas'].hasError('required')">
-              Alcobas<strong>required</strong>
+              Alcobas <strong>requiredo</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <mat-form-field class="full-width">
-          <textarea matInput placeholder="Baños" formControlName="Banio"></textarea>
+          <input matInput placeholder="Baños" formControlName="Banio">
           <mat-error *ngIf="addressForm.controls['Banio'].hasError('required')">
-            Baños<strong>required</strong>
+            Baños <strong>requiredo</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
-          <textarea matInput placeholder="Vehiculos" formControlName="Vehiculos"></textarea>
+          <input matInput placeholder="Vehiculos" formControlName="Vehiculos">
           <mat-error *ngIf="addressForm.controls['Vehiculos'].hasError('required')">
-            Vehiculos<strong>required</strong>
+            Vehiculos <strong>requiredo</strong>
           </mat-error>
         </mat-form-field>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit">{{accion}}</button>
     </mat-card-actions>
   </mat-card>
 </form>

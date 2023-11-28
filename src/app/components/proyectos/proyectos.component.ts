@@ -87,10 +87,10 @@ export class ProyectosComponent implements OnInit {
     this.dialog.open(FormProyectosComponent, {});
   }
 
-  editarArrendatario(element: any){
+  editarRegistro(element: any){
     this.ModalService.accion.next("Editar");
     this.ModalService.titulo = "Editar"
-    this.ModalService.arrendatario = element
+    this.ModalService.proyectos = element
 
     this.dialog.open(FormProyectosComponent, {})
   }

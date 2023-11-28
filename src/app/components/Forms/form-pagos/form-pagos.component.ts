@@ -126,7 +126,7 @@ export class FormPagosComponent {
         this.infoPagos.TasaInteresPagos = this.addressForm.controls['TasaIntereses'].value;
   
         this.dialog.closeAll();
-        this.apiService.update('Arrendatarios', this.infoPagos, String(this.modalService.arrendatario['cedulaArrendatario'])).then(res => {
+        this.apiService.update('Pagos', this.infoPagos, String(this.modalService.pagos['rcPagos'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',

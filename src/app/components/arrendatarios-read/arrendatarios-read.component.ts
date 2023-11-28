@@ -88,14 +88,13 @@ export class ArrendatariosReadComponent implements OnInit {
     this.dialog.open(FormArrendatarioComponent, {});
   }
 
-  editarArrendatario(element: any){
+  editarRegistro(element: any){
     this.ModalService.accion.next("Editar");
     this.ModalService.titulo = "Editar"
     this.ModalService.arrendatario = element
 
     this.dialog.open(FormArrendatarioComponent, {})
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

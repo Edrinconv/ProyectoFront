@@ -21,7 +21,10 @@ export class PropietariosReadComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>
 
-  constructor(public apiService: ApiService, public dialog: MatDialog, public ModalService: ModalService) {
+  constructor(public apiService: ApiService,
+    public dialog: MatDialog,
+    public ModalService: ModalService
+    ) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -86,10 +89,10 @@ export class PropietariosReadComponent implements OnInit {
     this.dialog.open(FormPropietariosComponent, {});
   }
 
-  editarArrendatario(element: any){
+  editarRegistro(element: any){
     this.ModalService.accion.next("Editar");
     this.ModalService.titulo = "Editar"
-    this.ModalService.arrendatario = element
+    this.ModalService.propietario = element
 
     this.dialog.open(FormPropietariosComponent, {})
   }

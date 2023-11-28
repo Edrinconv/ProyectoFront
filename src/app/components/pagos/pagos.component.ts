@@ -88,10 +88,10 @@ export class PagosComponent implements OnInit {
     this.dialog.open(FormPagosComponent, {});
   }
 
-  editarArrendatario(element: any){
+  editarRegistro(element: any){
     this.ModalService.accion.next("Editar");
     this.ModalService.titulo = "Editar"
-    this.ModalService.arrendatario = element
+    this.ModalService.pagos = element
 
     this.dialog.open(FormPagosComponent, {})
   }
