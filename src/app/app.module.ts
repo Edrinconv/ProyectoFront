@@ -40,6 +40,7 @@ import { FormArreglosLocativosComponent } from './components/Forms/form-arreglos
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
+import { SingInComponent } from './sing-in/sing-in.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { LoginComponent } from './components/login/login.component';
     FormInmueblesComponent,
     FormArreglosLocativosComponent,
     LoginComponent,
+    SingInComponent,
   ],
   imports: [
     BrowserModule,

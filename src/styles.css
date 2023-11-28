@@ -46,3 +46,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .btn-new:hover {
     background-color: #4550a0; /* Cambiar color de fondo al pasar sobre el botón */
   }
+
+  .wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.logo{
+    height: 130px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+.body{
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+
+}  

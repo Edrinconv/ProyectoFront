@@ -47,7 +47,7 @@ export class FormArrendatarioComponent {
     this.titulo = this.modalService.titulo;
     this.accion = this.modalService.accion.value;
     
-    if(this.modalService.accion.value == "EDITAR"){
+    if(this.modalService.accion.value == "Editar"){
       this.addressForm.controls.Cedula.setValue(
         this.modalService.arrendatario['cedulaArrendatario']
       );
@@ -69,7 +69,7 @@ export class FormArrendatarioComponent {
   onSubmit(){
     this.titulo=this.modalService.titulo
     this.accion=this.modalService.accion.value
-    if (this.modalService.accion.value == "GUARDAR"){
+    if (this.modalService.accion.value == "Guardar"){
       if (this.addressForm.valid) {
         this.infoArrendatario.CedulaArrendatario = this.addressForm.controls['Cedula'].value;
         this.infoArrendatario.NombreArrendatario = this.addressForm.controls['Nombres'].value;
@@ -114,7 +114,7 @@ export class FormArrendatarioComponent {
         this.apiService.update('Arrendatarios', this.infoArrendatario, String(this.modalService.arrendatario['cedulaArrendatario'])).then(res => {
           if (res == undefined) {
             Swal.fire({
-              title: 'EDICION REALIZADA',
+              title: 'Edicion Realizada',
               text: 'El arrendatario ha sido editado',
               icon: 'success',
               color: '#7b1fa2',
@@ -134,7 +134,6 @@ export class FormArrendatarioComponent {
           'error'
         )
       }
-
     }
   }
 }
