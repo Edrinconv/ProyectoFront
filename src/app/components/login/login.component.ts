@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   constructor(public apiService: ApiService){}
   private fb = inject(FormBuilder);
   loginForm = this.fb.group({

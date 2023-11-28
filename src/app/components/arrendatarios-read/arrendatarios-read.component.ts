@@ -19,7 +19,11 @@ export class ArrendatariosReadComponent implements OnInit {
   dataSource: MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public apiService: ApiService, public dialog: MatDialog, public ModalService: ModalService) {
+  constructor(
+    public apiService: ApiService,
+    public dialog: MatDialog,
+    public ModalService: ModalService
+    ) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -43,7 +47,8 @@ export class ArrendatariosReadComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si!'
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         if(element !== undefined){
@@ -74,20 +79,18 @@ export class ArrendatariosReadComponent implements OnInit {
         }
       }
     })
-
-    
   }
 
   openDialog() {
-    this.ModalService.accion.next("GUARDAR")
-    this.ModalService.titulo = "CREAR"
+    this.ModalService.accion.next("Guardar")
+    this.ModalService.titulo = "Crear"
 
     this.dialog.open(FormArrendatarioComponent, {});
   }
 
   editarArrendatario(element: any){
-    this.ModalService.accion.next("EDITAR");
-    this.ModalService.titulo="EDITAR"
+    this.ModalService.accion.next("Editar");
+    this.ModalService.titulo = "Editar"
     this.ModalService.arrendatario = element
 
     this.dialog.open(FormArrendatarioComponent, {})

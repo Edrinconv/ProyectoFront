@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PropietariosModels } from 'src/app/Models/PropietariosModels';
+import { ModalService } from 'src/app/services/Modal/modal.service';
 import { ApiService } from 'src/app/services/api.service';
 import Swal from 'sweetalert2';
 
@@ -13,9 +14,16 @@ import Swal from 'sweetalert2';
 })
 export class FormPropietariosComponent {
 
-  constructor(public apiService: ApiService, public dialog: MatDialog) {
+  constructor(
+    public apiService: ApiService,
+    public dialog: MatDialog,
+    public modalService: ModalService
+  ) {
 
   }
+
+  titulo = ""
+  accion = ""
 
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
@@ -30,7 +38,7 @@ export class FormPropietariosComponent {
   });
 
   infoPropietarios: PropietariosModels = {
-    
+
     CedulaPropietario: 0,
     NombrePropietario: "",
     ApellidoPropietario: "",
@@ -41,40 +49,78 @@ export class FormPropietariosComponent {
     NombreBancoPropietario: ""
   }
 
-  onSubmit(): void {
-    if (this.addressForm.valid) {
-      this.infoPropietarios.CedulaPropietario = this.addressForm.controls['Cedula'].value;
-      this.infoPropietarios.NombrePropietario = this.addressForm.controls['Nombres'].value;
-      this.infoPropietarios.ApellidoPropietario = this.addressForm.controls['Apellidos'].value;
-      this.infoPropietarios.TelefonoPropietario = this.addressForm.controls['Telefono'].value;
-      this.infoPropietarios.CorreoPropietario = this.addressForm.controls['Correo'].value;
-      this.infoPropietarios.NombreBancoPropietario = this.addressForm.controls['Banco'].value;
-      this.infoPropietarios.CuentaBancariaPropietario = this.addressForm.controls['NumeroDeCuenta'].value;
-      this.infoPropietarios.TipoCuentaPropietario = this.addressForm.controls['TipoDeCuenta'].value;
+  ngOnInit(): void {
 
-      this.dialog.closeAll();
-      this.apiService.post('Propietarios', this.infoPropietarios).then(res => {
-        if (res == undefined) {
-          Swal.fire({
-            title: 'Creacion Realizada',
-            text: 'El propietario ha sido creado',
-            icon: 'success',
-            color: '#7b1fa2',
-          })
-        }
-      }).catch(error => {
+    this.accion = this.modalService.titulo;
+    this.accion = this.modalService.accion.value;
+
+    if (this.modalService.accion.value == "Editar") {
+      this.addressForm.controls.Cedula.setValue(
+        this.modalService.propietario['cedulaPropietario']
+      );
+      this.addressForm.controls.Nombres.setValue(
+        this.modalService.propietario['nombrePropietario']
+      );
+      this.addressForm.controls.Apellidos.setValue(
+        this.modalService.propietario['apellidoPropietario']
+      );
+      this.addressForm.controls.Telefono.setValue(
+        this.modalService.propietario['telefonoPropietario']
+      );
+      this.addressForm.controls.Correo.setValue(
+        this.modalService.propietario['correoPropietario']
+      );
+      this.addressForm.controls.NumeroDeCuenta.setValue(
+        this.modalService.propietario['cuentaBancariaPropietario']
+      );
+      this.addressForm.controls.TipoDeCuenta.setValue(
+        this.modalService.propietario['tipoCuentaPropietario']
+      );
+      this.addressForm.controls.Banco.setValue(
+        this.modalService.propietario['nombreBancoPropietario']
+      );
+
+    }
+  }
+
+  onSubmit(): void {
+    this.titulo = this.modalService.titulo
+    this.accion = this.modalService.accion.value
+    if (this.modalService.accion.value == "Guardar") {
+      if (this.addressForm.valid) {
+        this.infoPropietarios.CedulaPropietario = this.addressForm.controls['Cedula'].value;
+        this.infoPropietarios.NombrePropietario = this.addressForm.controls['Nombres'].value;
+        this.infoPropietarios.ApellidoPropietario = this.addressForm.controls['Apellidos'].value;
+        this.infoPropietarios.TelefonoPropietario = this.addressForm.controls['Telefono'].value;
+        this.infoPropietarios.CorreoPropietario = this.addressForm.controls['Correo'].value;
+        this.infoPropietarios.NombreBancoPropietario = this.addressForm.controls['Banco'].value;
+        this.infoPropietarios.CuentaBancariaPropietario = this.addressForm.controls['NumeroDeCuenta'].value;
+        this.infoPropietarios.TipoCuentaPropietario = this.addressForm.controls['TipoDeCuenta'].value;
+
+        this.dialog.closeAll();
+        this.apiService.post('Propietarios', this.infoPropietarios).then(res => {
+          if (res == undefined) {
+            Swal.fire({
+              title: 'Creacion Realizada',
+              text: 'El propietario ha sido creado',
+              icon: 'success',
+              color: '#7b1fa2',
+            })
+          }
+        }).catch(error => {
+          Swal.fire(
+            `Status error ${error.status}`,
+            `Message: ${error.message}`,
+            `error`
+          )
+        })
+      } else {
         Swal.fire(
-          `Status error ${error.status}`,
-          `Message: ${error.message}`,
-          `error`
+          'Ingresar los datos',
+          'Por favor ingrese todos los campos requeridos',
+          'error'
         )
-      })
-    } else {
-      Swal.fire(
-        'Ingresar los datos',
-        'Por favor ingrese todos los campos requeridos',
-        'error'
-      )
+      }
     }
   }
 }

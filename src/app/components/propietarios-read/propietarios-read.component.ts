@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/services/api.service';
 import { FormPropietariosComponent } from '../Forms/form-propietarios/form-propietarios.component';
 import Swal from 'sweetalert2';
+import { ModalService } from 'src/app/services/Modal/modal.service';
 
 @Component({
   selector: 'app-propietarios-read',
@@ -20,7 +21,7 @@ export class PropietariosReadComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>
 
-  constructor(public apiService: ApiService, public dialog: MatDialog) {
+  constructor(public apiService: ApiService, public dialog: MatDialog, public ModalService: ModalService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -35,36 +36,62 @@ export class PropietariosReadComponent implements OnInit {
 
   delRegistro(element: any){
 
-    const Id= element.Cedula
+    const id= element.Cedula
 
-    if(element !== undefined){
-      this.apiService.delete('Propietarios', String(Id)).then((res) => {
-        if (res == undefined) {
-          Swal.fire({
-            title: 'Eliminación Realizada',
-            text: 'El propietario ha sido eliminado',
-            icon: 'success',
-            color: '#7b1fa2',
+    Swal.fire({
+      title: 'Estás seguro de eliminarlo?',
+      text: "Recuerda que no podras recuperar esta información!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(element !== undefined){
+          this.apiService.delete('Propietarios', String(id)).then((res) =>{
+            console.log(res)
+            this.ngOnInit();
+          if (res == undefined) {
+              Swal.fire({
+                title: 'Eliminación Realizada',
+                text: 'El propietario ha sido eliminado',
+                icon: 'success',
+                color: '#7b1fa2',
+              })
+            }
+          }).catch(error => {
+            Swal.fire(
+              `Status error ${error.status}`,
+              `Message: ${error.message}`,
+              `error`
+            )
           })
+        }else {
+          Swal.fire(
+            'Ingresar los datos',
+            'Por favor ingrese todos los campos requeridos',
+            'error'
+          )
         }
-      }).catch(error => {
-        Swal.fire(
-          `Status error ${error.status}`,
-          `Message: ${error.message}`,
-          `error`
-        )
-      })
-    }else {
-      Swal.fire(
-        'Ingresar los datos',
-        'Por favor ingrese todos los campos requeridos',
-        'error'
-      )
-    }
+      }
+    })
   }
 
   openDialog() {
+
+    this.ModalService.accion.next("Guardar")
+    this.ModalService.titulo = "Crear"
     this.dialog.open(FormPropietariosComponent, {});
+  }
+
+  editarArrendatario(element: any){
+    this.ModalService.accion.next("Editar");
+    this.ModalService.titulo = "Editar"
+    this.ModalService.arrendatario = element
+
+    this.dialog.open(FormPropietariosComponent, {})
   }
 
   applyFilter(event: Event) {

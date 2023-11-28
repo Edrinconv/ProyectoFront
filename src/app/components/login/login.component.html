@@ -1,16 +1,26 @@
-<div class="login">
-    <div class="login-triangle"></div>
-    
-    <h2 class="login-header">Log in</h2>
-  
-    <form class="login-container" [formGroup]="loginForm" (submit)="onSubmit()">
-        <mat-form-field class="full-width">
-            <input matInput type="email" placeholder="correo" formControlName="correo">
-        </mat-form-field>
-        
-        <mat-form-field class="full-width">
-            <input matInput type="password" placeholder="contraseña" formControlName="contrasenia">
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">INGRESAR</button>
-    </form>
-  </div>
+//
+
+  <div class="wrapper">
+    <div class="body">
+        <img class="logo" src="../../../assets/img/CrMercantil.png" alt="CrMercantilLogin">
+        <h1>Iniciar Sesión</h1>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="" formControlName="correo">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Ingrese su contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasenia">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+        <p>¿No tienes cuenta?<a routerLink="/SingIn">Registrar</a></p>
+    </div>
+</div>
