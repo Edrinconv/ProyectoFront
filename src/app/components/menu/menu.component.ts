@@ -16,4 +16,9 @@ export class MenuComponent {
       map(result => result.matches),
       shareReplay()
     );
+
+    logOut(){
+      localStorage.removeItem("login");
+      window.location.reload();
+    }
 }

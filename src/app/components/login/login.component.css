@@ -37,6 +37,10 @@ body {
   color: #fff;
 }
 
+.formLogin{
+  margin: auto;
+  height: 100vh;
+}
 .login-container {
   background: #ebebeb;
   padding: 12px;

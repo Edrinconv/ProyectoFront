@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
       for (var i = 0; i < Object.keys(this.loginRes).length; i++) {
         var login = this.loginRes[i];
         if (login['correo'] ==  this.infoLogin.correoLogin && login['contrasenia'] ==  this.infoLogin.passwordLogin) {
+          localStorage.setItem("login", JSON.stringify(login))
           this.infoLogin.usuariologin = `${login['usuario1']}`
           encontrado = true;
           break;
