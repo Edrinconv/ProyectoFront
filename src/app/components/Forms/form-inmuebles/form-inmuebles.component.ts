@@ -65,7 +65,7 @@ export class FormInmueblesComponent {
 
     if (this.modalService.accion.value == "Editar") {
       this.addressForm.controls.MatInmueble.setValue(
-        this.modalService.proyectos['MatriculaInmobiliariaInmueble']
+        this.modalService.proyectos['matricula']
       );
       this.addressForm.controls.ChipInmueble.setValue(
         this.modalService.proyectos['ChipInmueble']
@@ -77,7 +77,7 @@ export class FormInmueblesComponent {
         this.modalService.proyectos['MatriculaInmobiliariaProyectoInmueble']
       );
       this.addressForm.controls.TipInmuebe.setValue(
-        this.modalService.proyectos['TipoInmueble']
+        this.modalService.proyectos['inmueble']
       );
       this.addressForm.controls.Nomenclatura.setValue(
         this.modalService.proyectos['NomenclaturaInmueble']
@@ -162,7 +162,7 @@ export class FormInmueblesComponent {
         this.infoInmuebles.VehiculoInmueble = this.addressForm.controls['Vehiculos'].value;
 
         this.dialog.closeAll();
-        this.apiService.update('Inmuebles', this.infoInmuebles, String(this.modalService.inmuebles['MatriculaInmobiliariaInmueble'])).then(res => {
+        this.apiService.update('Inmuebles', this.infoInmuebles, String(this.modalService.inmuebles['matricula'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',

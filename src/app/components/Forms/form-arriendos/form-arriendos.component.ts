@@ -52,16 +52,16 @@ export class FormArriendosComponent {
     
     if(this.modalService.accion.value == "Editar"){
       this.addressForm.controls.Contrato.setValue(
-        this.modalService.proyectos['IdContrato']
+        this.modalService.proyectos['numeroContrato']
       );
       this.addressForm.controls.CedulaArrendatario.setValue(
         this.modalService.proyectos['CedulaArrendatarioContrato']
       );
       this.addressForm.controls.FechaPago.setValue(
-        this.modalService.proyectos['FechaInicioContrato']
+        this.modalService.proyectos['inicio']
       );
       this.addressForm.controls.VrCanon.setValue(
-        this.modalService.proyectos['ValorCanonContrato']
+        this.modalService.proyectos['canon']
       );
       this.addressForm.controls.ReciboCaja.setValue(
         this.modalService.proyectos['RcPagosContrato']
@@ -114,7 +114,7 @@ export class FormArriendosComponent {
         this.infoArriendos.RcPagosContrato = this.addressForm.controls['ReciboCaja'].value;
   
         this.dialog.closeAll();
-        this.apiService.update('ContratoArriendos', this.infoArriendos, String(this.modalService.arriendos['IdContrato'])).then(res => {
+        this.apiService.update('ContratoArriendos', this.infoArriendos, String(this.modalService.arriendos['numeroContrato'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',
