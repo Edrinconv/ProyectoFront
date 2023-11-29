@@ -55,28 +55,28 @@ export class FormProyectosComponent {
     
     if(this.modalService.accion.value == "Editar"){
       this.addressForm.controls.MatriculaInmobiliaria.setValue(
-        this.modalService.proyectos['matriculaInmobiliariaProyecto']
+        this.modalService.proyectos['matricula']
       );
       this.addressForm.controls.EscrituraReglamento.setValue(
-        this.modalService.proyectos['escrituraReglamentoProyecto']
+        this.modalService.proyectos['escritura']
       );
       this.addressForm.controls.NombreProyecto.setValue(
-        this.modalService.proyectos['nombreProyecto']
+        this.modalService.proyectos['proyecto']
       );
       this.addressForm.controls.DireccionProyecto.setValue(
-        this.modalService.proyectos['direccionProyecto']
+        this.modalService.proyectos['direccion']
       );
       this.addressForm.controls.Estrato.setValue(
-        this.modalService.proyectos['estratoProyecto']
+        this.modalService.proyectos['estrato']
       );
       this.addressForm.controls.NombreAdministrador.setValue(
-        this.modalService.proyectos['administradorProyecto']
+        this.modalService.proyectos['administrador']
       );
       this.addressForm.controls.TelefonoAdministrador.setValue(
-        this.modalService.proyectos['telefonoAdministradorProyecto']
+        this.modalService.proyectos['telefono']
       );
       this.addressForm.controls.CorreoAdministrador.setValue(
-        this.modalService.proyectos['correoAdministradorProyecto']
+        this.modalService.proyectos['correo']
       );
     }
   }
@@ -132,7 +132,7 @@ export class FormProyectosComponent {
         this.infoProyectos.CorreoAdministradorProyecto = this.addressForm.controls['CorreoAdministrador'].value;
   
         this.dialog.closeAll();
-        this.apiService.update('Proyectos', this.infoProyectos, String(this.modalService.proyectos['matriculaInmobiliariaProyecto'])).then(res => {
+        this.apiService.update('Proyectos', this.infoProyectos, String(this.modalService.proyectos['matricula'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',

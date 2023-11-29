@@ -54,13 +54,13 @@ export class FormPagosComponent {
     
     if(this.modalService.accion.value == "Editar"){
       this.addressForm.controls.RcPago.setValue(
-        this.modalService.pagos['rcPagos']
+        this.modalService.pagos['reciboCaja']
       );
       this.addressForm.controls.FacturaPago.setValue(
-        this.modalService.pagos['facturaPagos']
+        this.modalService.pagos['factura']
       );
       this.addressForm.controls.Fecha.setValue(
-        this.modalService.pagos['fechaPagos']
+        this.modalService.pagos['fecha']
       );
       this.addressForm.controls.AbonoAdministracion.setValue(
         this.modalService.pagos['abonoAdministracionPagos']
@@ -126,7 +126,7 @@ export class FormPagosComponent {
         this.infoPagos.TasaInteresPagos = this.addressForm.controls['TasaIntereses'].value;
   
         this.dialog.closeAll();
-        this.apiService.update('Pagos', this.infoPagos, String(this.modalService.pagos['rcPagos'])).then(res => {
+        this.apiService.update('Pagos', this.infoPagos, String(this.modalService.pagos  ['reciboCaja'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',

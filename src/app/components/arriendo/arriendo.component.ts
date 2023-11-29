@@ -37,7 +37,7 @@ export class ArriendoComponent implements OnInit {
 
   delRegistro(element: any){
 
-    const id=element.IdContrato
+    const id=element.numeroContrato
 
     Swal.fire({
       title: 'Estás seguro de eliminarlo?',

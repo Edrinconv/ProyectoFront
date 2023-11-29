@@ -37,7 +37,7 @@ export class InmuebleComponent implements OnInit {
 
   delRegistro(element: any){
 
-    const id=element.MatriculaInmobiliariaInmueble
+    const id=element.matricula
 
     Swal.fire({
       title: 'Estás seguro de eliminarlo?',
