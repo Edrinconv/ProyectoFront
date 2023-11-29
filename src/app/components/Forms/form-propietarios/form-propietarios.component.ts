@@ -56,37 +56,37 @@ export class FormPropietariosComponent {
 
     if (this.modalService.accion.value == "Editar") {
       this.addressForm.controls.Cedula.setValue(
-        this.modalService.propietario['cedulaPropietario']
+        this.modalService.propietario['cedula']
       );
       this.addressForm.controls.Nombres.setValue(
-        this.modalService.propietario['nombrePropietario']
+        this.modalService.propietario['nombre']
       );
       this.addressForm.controls.Apellidos.setValue(
-        this.modalService.propietario['apellidoPropietario']
+        this.modalService.propietario['apellido']
       );
       this.addressForm.controls.Telefono.setValue(
-        this.modalService.propietario['telefonoPropietario']
+        this.modalService.propietario['telefono']
       );
       this.addressForm.controls.Correo.setValue(
-        this.modalService.propietario['correoPropietario']
+        this.modalService.propietario['correo']
       );
       this.addressForm.controls.NumeroDeCuenta.setValue(
-        this.modalService.propietario['cuentaBancariaPropietario']
+        this.modalService.propietario['cuenta']
       );
       this.addressForm.controls.TipoDeCuenta.setValue(
-        this.modalService.propietario['tipoCuentaPropietario']
+        this.modalService.propietario['tipo']
       );
       this.addressForm.controls.Banco.setValue(
-        this.modalService.propietario['nombreBancoPropietario']
+        this.modalService.propietario['banco']
       );
 
     }
   }
 
-  onSubmit(): void {
-    this.titulo = this.modalService.titulo
-    this.accion = this.modalService.accion.value
-    if (this.modalService.accion.value == "Guardar") {
+  onSubmit(){
+    this.titulo=this.modalService.titulo
+    this.accion=this.modalService.accion.value
+    if (this.modalService.accion.value == "Guardar"){
       if (this.addressForm.valid) {
         this.infoPropietarios.CedulaPropietario = this.addressForm.controls['Cedula'].value;
         this.infoPropietarios.NombrePropietario = this.addressForm.controls['Nombres'].value;
@@ -111,6 +111,42 @@ export class FormPropietariosComponent {
           Swal.fire(
             `Status error ${error.status}`,
             `Message: ${error.message}`,
+            `error`
+          )
+        })
+      } else {
+        Swal.fire(
+          'Ingresar los datos',
+          'Por favor ingrese todos los campos requeridos',
+          'error'
+        )
+      }
+    }else{
+
+      if (this.addressForm.valid) {
+        this.infoPropietarios.CedulaPropietario = this.addressForm.controls['Cedula'].value;
+        this.infoPropietarios.NombrePropietario = this.addressForm.controls['Nombres'].value;
+        this.infoPropietarios.ApellidoPropietario = this.addressForm.controls['Apellidos'].value;
+        this.infoPropietarios.TelefonoPropietario = this.addressForm.controls['Telefono'].value;
+        this.infoPropietarios.CorreoPropietario = this.addressForm.controls['Correo'].value;
+        this.infoPropietarios.NombreBancoPropietario = this.addressForm.controls['Banco'].value;
+        this.infoPropietarios.CuentaBancariaPropietario = this.addressForm.controls['NumeroDeCuenta'].value;
+        this.infoPropietarios.TipoCuentaPropietario = this.addressForm.controls['TipoDeCuenta'].value;
+  
+        this.dialog.closeAll();
+        this.apiService.update('Propietarios', this.infoPropietarios, String(this.modalService.propietario['cedula'])).then(res => {
+          if (res == undefined) {
+            Swal.fire({
+              title: 'Edicion Realizada',
+              text: 'El propietario ha sido editado',
+              icon: 'success',
+              color: '#7b1fa2',
+            })
+          }
+        }).catch(error => {
+          Swal.fire(
+            `Status error ${error.status}`,
+            `Message EDITAR: ${error.message}`,
             `error`
           )
         })

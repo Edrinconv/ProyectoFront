@@ -15,7 +15,7 @@ import { ModalService } from 'src/app/services/Modal/modal.service';
   styleUrls: ['./arrendatarios-read.component.css']
 })
 export class ArrendatariosReadComponent implements OnInit {
-  displayedColumns: string[] = ['nombreArrendatario', 'apellidoArrendatario', 'correoArrendatario', 'telefonoArrendatario', 'Acciones'];
+  displayedColumns: string[] = ['nombre', 'apellido', 'correo', 'telefono', 'Acciones'];
   dataSource: MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,7 +38,7 @@ export class ArrendatariosReadComponent implements OnInit {
 
   delRegistro(element: any){
 
-    const id=element.cedulaArrendatario
+    const id=element.cedula
 
     Swal.fire({
       title: 'Estás seguro de eliminarlo?',
@@ -88,14 +88,13 @@ export class ArrendatariosReadComponent implements OnInit {
     this.dialog.open(FormArrendatarioComponent, {});
   }
 
-  editarArrendatario(element: any){
+  editarRegistro(element: any){
     this.ModalService.accion.next("Editar");
     this.ModalService.titulo = "Editar"
     this.ModalService.arrendatario = element
 
     this.dialog.open(FormArrendatarioComponent, {})
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

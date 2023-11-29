@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProyectosModels } from 'src/app/Models/ProyectosModels';
@@ -133,7 +132,7 @@ export class FormProyectosComponent {
         this.infoProyectos.CorreoAdministradorProyecto = this.addressForm.controls['CorreoAdministrador'].value;
   
         this.dialog.closeAll();
-        this.apiService.update('Arrendatarios', this.infoProyectos, String(this.modalService.arrendatario['cedulaArrendatario'])).then(res => {
+        this.apiService.update('Proyectos', this.infoProyectos, String(this.modalService.proyectos['matriculaInmobiliariaProyecto'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',
