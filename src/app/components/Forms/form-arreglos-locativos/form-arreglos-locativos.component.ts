@@ -49,19 +49,19 @@ export class FormArreglosLocativosComponent {
     
     if(this.modalService.accion.value == "Editar"){
       this.addressForm.controls.IdArreglo.setValue(
-        this.modalService.arreglosLocativos['idLocativaArreglo']
+        this.modalService.arreglosLocativos['arreglo']
       );
       this.addressForm.controls.Fecha1.setValue(
-        this.modalService.arreglosLocativos['fechaInicioArreglo']
+        this.modalService.arreglosLocativos['fechaInicio']
       );
       this.addressForm.controls.Fecha2.setValue(
-        this.modalService.arreglosLocativos['fechaFinalizacionArreglo']
+        this.modalService.arreglosLocativos['fechaFin']
       );
       this.addressForm.controls.EstadoArreglo.setValue(
-        this.modalService.arreglosLocativos['estadoArreglo']
+        this.modalService.arreglosLocativos['estado']
       );
       this.addressForm.controls.Observaciones.setValue(
-        this.modalService.arreglosLocativos['observacionesArreglo']
+        this.modalService.arreglosLocativos['observacion']
       );
     }
   }
@@ -111,7 +111,7 @@ export class FormArreglosLocativosComponent {
         this.infoArreglos.ObservacionesArreglo = this.addressForm.controls['Observaciones'].value;
   
         this.dialog.closeAll();
-        this.apiService.update('ArregloLocativos', this.infoArreglos, String(this.modalService.arreglosLocativos['idLocativaArreglo'])).then(res => {
+        this.apiService.update('ArregloLocativos', this.infoArreglos, String(this.modalService.arreglosLocativos['arreglo'])).then(res => {
           if (res == undefined) {
             Swal.fire({
               title: 'Edicion Realizada',

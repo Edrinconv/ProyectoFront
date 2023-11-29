@@ -39,7 +39,7 @@ export class PropietariosReadComponent implements OnInit {
 
   delRegistro(element: any){
 
-    const id= element.Cedula
+    const id= element.cedula
 
     Swal.fire({
       title: 'Estás seguro de eliminarlo?',

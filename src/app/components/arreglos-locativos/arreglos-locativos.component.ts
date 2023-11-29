@@ -37,7 +37,7 @@ export class ArreglosLocativosComponent implements OnInit {
 
   delRegistro(element: any){
 
-    const id=element.IdArreglo
+    const id=element.arreglo
 
     Swal.fire({
       title: 'Estás seguro de eliminarlo?',
